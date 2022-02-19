@@ -1,0 +1,6 @@
+docker logs -f --until=2s backend_practica1So
+docker stop backend_practica1So dbmongo
+docker rm backend_practica1So dbmongo
+docker rmi edson2021/backend_p1_201701029
+
+docker-compose up --build -d

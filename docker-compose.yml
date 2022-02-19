@@ -1,0 +1,35 @@
+version: "3.9" 
+services:
+  db:
+    image: mongo
+    container_name: dbmongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: So1pass1S_2022
+    ports:
+      - "27017:27017"
+    restart: always
+    volumes:
+      - /c/Users/edson/Desktop/Proyectos/SistemasOperativos/Practica1/Volumenes2:/data/db
+    networks:
+      - practica1So-net
+
+  backend:
+    container_name: backend_practica1So
+    image: edson2021/backend_p1_201701029
+    build: ./Backend    
+    environment:
+      MONGO_USERNAME: mongoadmin
+      MONGO_PASSWORD: So1pass1S_2022
+      MONGO_HOST: db
+    ports:
+    - "6000:6000"
+    restart: always
+    depends_on:
+    - db
+    networks:
+    - practica1So-net
+networks:
+  practica1So-net:
+    name: "practica1So-net"
+    driver: bridge
