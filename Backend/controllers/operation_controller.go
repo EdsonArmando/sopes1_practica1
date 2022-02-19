@@ -17,6 +17,7 @@ import (
 var operationCollection *mongo.Collection = configs.GetCollection(configs.DB, "operation")
 var validate = validator.New()
 
+
 func CreateOperation() http.HandlerFunc {
     return func(rw http.ResponseWriter, r *http.Request) {
         ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -90,7 +91,7 @@ func GetAllOperation() http.HandlerFunc {
         }
 
         rw.WriteHeader(http.StatusOK)
-        response := responses.UserResponse{Status: http.StatusOK, Message: "success", Data: map[string]interface{}{"data": users}}
+        response := responses.UserResponse{Status: 201, Message: "Funcion", Data: map[string]interface{}{"data": users}}
         json.NewEncoder(rw).Encode(response)
     }
 }
