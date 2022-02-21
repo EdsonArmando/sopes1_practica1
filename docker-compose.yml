@@ -30,6 +30,18 @@ services:
     networks:
     - practica1So-net
 
+  frontend:    
+    container_name: frontend_practica1So
+    image: edson2021/frontend_p1_201701029
+    build: ./practica1-sopes1
+    ports:
+    - "80:80"
+    restart: always
+    depends_on:
+    - backend
+    networks:
+    - practica1So-net
+
 networks:
   practica1So-net:
     name: "practica1So-net"
